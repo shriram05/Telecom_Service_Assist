@@ -1,0 +1,46 @@
+billing_analysis_task:
+  description: >
+    Analyze the customer's billing history and current charges.
+        
+        1. Query the database to retrieve the customer's current bill using their customer email: {customer_email}
+        2. Use the provided query: {query} to refine the analysis
+        3. Compare with previous bills to identify any changes or unusual charges
+        4. List all charges with clear explanations for each item
+        5. Highlight any differences from previous billing cycles
+        6. Explain reasons for any price increases or new charges
+
+        Make sure to first retrieve the table details and schema of relevant tables before querying the database.
+        
+        Your response should be detailed but easy to understand, avoiding technical jargon where possible.
+  expected_output: >
+      A detailed analysis of the customer's bill with clear explanations for all charges
+  agent: billing_specialist_agent
+
+usage_analysis_task:
+  description: >
+    Review the customer's usage patterns and evaluate if their current plan is optimal.
+        
+        1. Query the database to retrieve the customer's usage data (data, calls, texts) using their email: {customer_email}
+        2. Use the provided query: {query} to refine the analysis
+        3. Compare their usage with their current plan limits
+        4. Check if they're paying for features they don't use
+        5. Identify if they frequently exceed plan limits
+        6. Query available plans that might better match their usage pattern
+        Make sure to first retrieve the table details and schema of relevant tables before querying the database.
+      
+        Your analysis should focus on finding the best value plan for the customer's actual usage.
+  expected_output: >
+        An analysis of usage patterns and recommendations for potentially better plan options
+  agent: service_advisor_agent
+
+
+comprehensive_response_task:
+  description: >
+     Create a comprehensive response that suits the given {query}.
+     Make sure to first retrive the table details and schema of relevant tables before querying the database.
+     The final response should be complete, helpful, and ready to present to the customer. 
+       
+  expected_output: >
+        A comprehensive, customer-friendly response addressing billing queries and providing recommendations
+          
+  agent: service_advisor_agent
